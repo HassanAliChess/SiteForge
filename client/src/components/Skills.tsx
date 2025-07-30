@@ -104,11 +104,11 @@ export default function Skills() {
         </motion.div>
         
         {/* Skill Matrix Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-start">
           {skillsData.map((skill, index) => (
             <motion.div
               key={index}
-              className="tech-scan"
+              className="tech-scan h-fit"
               initial={{ opacity: 0, y: 50, rotateX: -15 }}
               animate={isVisible ? { opacity: 1, y: 0, rotateX: 0 } : {}}
               transition={{ 
@@ -117,10 +117,7 @@ export default function Skills() {
                 type: "spring",
                 stiffness: 100
               }}
-              whileHover={{ 
-                y: -10,
-                transition: { duration: 0.2 }
-              }}
+              layout
             >
               <SkillCard {...skill} />
             </motion.div>
