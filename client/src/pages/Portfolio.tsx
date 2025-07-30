@@ -1,15 +1,5 @@
-import Navigation from "@/components/Navigation";
-import Hero from "@/components/Hero";
-import About from "@/components/About";
-import FullStackSection from "@/components/FullStackSection";
-import DataScienceSection from "@/components/DataScienceSection";
-import AISection from "@/components/AISection";
-import TradingSection from "@/components/TradingSection";
-import TechSupportSection from "@/components/TechSupportSection";
-import GamingSection from "@/components/GamingSection";
-import Badges from "@/components/Badges";
-import SoftSkills from "@/components/SoftSkills";
-import Contact from "@/components/Contact";
+import { Navigation, Hero, About, Badges, SoftSkills, Contact } from "@/components/AllComponents";
+import { FullStackSection, DataScienceSection, AISection, TradingSection, TechSupportSection, GamingSection } from "@/components/AllSections";
 
 export default function Portfolio() {
   return (
