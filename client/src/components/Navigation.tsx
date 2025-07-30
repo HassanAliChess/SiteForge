@@ -29,28 +29,58 @@ export default function Navigation() {
             <span className="font-orbitron font-bold text-xl text-electric-blue">MHA</span>
           </div>
           <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-4">
+            <div className="ml-10 flex items-baseline space-x-1 text-xs">
               <button
                 onClick={() => scrollToSection("hero")}
-                className="hover:text-electric-blue transition-colors px-3 py-2"
+                className="hover:text-electric-blue transition-colors px-2 py-2"
               >
                 Home
               </button>
               <button
                 onClick={() => scrollToSection("about")}
-                className="hover:text-electric-blue transition-colors px-3 py-2"
+                className="hover:text-electric-blue transition-colors px-2 py-2"
               >
                 About
               </button>
               <button
-                onClick={() => scrollToSection("skills")}
-                className="hover:text-electric-blue transition-colors px-3 py-2"
+                onClick={() => scrollToSection("fullstack")}
+                className="hover:text-electric-blue transition-colors px-2 py-2"
               >
-                Skills
+                FullStack
+              </button>
+              <button
+                onClick={() => scrollToSection("datascience")}
+                className="hover:text-electric-blue transition-colors px-2 py-2"
+              >
+                DataSci
+              </button>
+              <button
+                onClick={() => scrollToSection("ai")}
+                className="hover:text-electric-blue transition-colors px-2 py-2"
+              >
+                AI
+              </button>
+              <button
+                onClick={() => scrollToSection("trading")}
+                className="hover:text-electric-blue transition-colors px-2 py-2"
+              >
+                Trading
+              </button>
+              <button
+                onClick={() => scrollToSection("techsupport")}
+                className="hover:text-electric-blue transition-colors px-2 py-2"
+              >
+                TechSupport
+              </button>
+              <button
+                onClick={() => scrollToSection("gaming")}
+                className="hover:text-electric-blue transition-colors px-2 py-2"
+              >
+                Gaming
               </button>
               <button
                 onClick={() => scrollToSection("contact")}
-                className="hover:text-electric-blue transition-colors px-3 py-2"
+                className="hover:text-electric-blue transition-colors px-2 py-2"
               >
                 Contact
               </button>
