@@ -39,12 +39,23 @@ export default function SkillCard({ emoji, title, subtitle, skills }: SkillCardP
   };
 
   return (
-    <div
-      className="h-64 cursor-pointer cyber-transform"
+    <motion.div
+      className="cursor-pointer cyber-transform"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      layout
+      initial={{ height: "auto" }}
+      animate={{ 
+        height: isHovered ? "auto" : "320px"
+      }}
+      transition={{ 
+        duration: 0.6,
+        type: "spring",
+        stiffness: 100,
+        damping: 20
+      }}
     >
-      <div className="relative w-full h-full skill-card-enhanced rounded-lg overflow-hidden">
+      <div className="relative w-full skill-card-enhanced rounded-lg overflow-hidden">
         {/* Data Stream Effect */}
         <div className="data-stream" />
         
@@ -52,93 +63,130 @@ export default function SkillCard({ emoji, title, subtitle, skills }: SkillCardP
         <div className="hologram-effect absolute inset-0" />
         
         {/* Main Content */}
-        <div className="relative z-10 p-6 h-full flex flex-col">
+        <div className="relative z-10 p-6">
           {/* Header Section */}
-          <div className="flex-shrink-0 text-center mb-4">
+          <div className="text-center mb-6">
             <motion.div 
-              className="text-4xl mb-3"
+              className="text-5xl mb-4"
               animate={{ 
-                rotateY: isHovered ? [0, 360] : [0, 10, -10, 0],
-                scale: isHovered ? 1.1 : 1
+                rotateY: isHovered ? [0, 360] : [0, 15, -15, 0],
+                scale: isHovered ? 1.2 : 1,
+                filter: isHovered ? "drop-shadow(0 0 20px currentColor)" : "drop-shadow(0 0 5px currentColor)"
               }}
               transition={{ 
-                duration: isHovered ? 1 : 4, 
+                duration: isHovered ? 1 : 6, 
                 repeat: isHovered ? 0 : Infinity, 
                 ease: "easeInOut" 
               }}
             >
               {emoji}
             </motion.div>
-            <h3 className="font-orbitron font-bold text-lg text-white mb-1 text-center cyber-text-glow">
+            <h3 className="font-orbitron font-bold text-xl text-white mb-2 text-center cyber-text-glow">
               {title}
             </h3>
-            <p className="text-xs text-electric-blue text-center font-medium cyber-text-glow">
+            <p className="text-sm text-electric-blue text-center font-medium cyber-text-glow">
               {subtitle}
             </p>
+            
+            {/* Tech Header Bar */}
+            <div className="flex justify-center items-center mt-4 space-x-4">
+              <div className="h-px bg-gradient-to-r from-transparent via-electric-blue to-transparent flex-1" />
+              <div className="font-mono text-xs text-electric-blue/80">
+                {isHovered ? "FULL SPEC ANALYSIS" : "BASIC SCAN MODE"}
+              </div>
+              <div className="h-px bg-gradient-to-r from-transparent via-electric-blue to-transparent flex-1" />
+            </div>
           </div>
 
-          {/* Skills Display */}
+          {/* Skills Matrix */}
           <motion.div 
-            className="flex-1 space-y-2 text-xs"
-            initial={{ opacity: 0.3, y: 20 }}
-            animate={{ 
-              opacity: isHovered ? 1 : 0.6, 
-              y: isHovered ? 0 : 10 
-            }}
-            transition={{ duration: 0.3 }}
+            className="space-y-3"
+            layout
           >
-            {skills.slice(0, 4).map((skill, index) => (
+            {skills.map((skill, index) => (
               <motion.div
                 key={index}
-                className="relative"
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: index * 0.1 }}
+                className="relative group"
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ 
+                  opacity: 1, 
+                  x: 0,
+                  scale: isHovered ? 1.02 : 1
+                }}
+                transition={{ 
+                  delay: index * 0.1,
+                  duration: 0.5,
+                  type: "spring"
+                }}
+                layout
               >
-                <div className="flex justify-between items-center mb-1">
-                  <span className="text-white font-medium text-xs">{skill.name}</span>
-                  <span className={`${getLevelColor(skill.level)} font-bold text-xs cyber-text-glow`}>
-                    {skill.level}
+                {/* Skill Name & Level */}
+                <div className="flex justify-between items-center mb-2">
+                  <span className="text-white font-medium text-sm group-hover:text-electric-blue transition-colors">
+                    {skill.name}
                   </span>
+                  <motion.span 
+                    className={`${getLevelColor(skill.level)} font-bold text-sm cyber-text-glow px-2 py-1 rounded border border-current/30`}
+                    whileHover={{ scale: 1.05 }}
+                  >
+                    {skill.level}
+                  </motion.span>
                 </div>
-                <div className="h-1 bg-gray-700/50 rounded-full overflow-hidden">
+                
+                {/* Progress Bar */}
+                <div className="h-2 bg-gray-800/50 rounded-full overflow-hidden relative">
                   <motion.div
-                    className="h-full bg-gradient-to-r from-electric-blue via-neon-cyan to-electric-blue rounded-full"
+                    className="h-full bg-gradient-to-r from-electric-blue via-neon-cyan to-electric-blue rounded-full relative"
                     initial={{ width: 0 }}
                     animate={{ 
-                      width: isHovered ? getLevelWidth(skill.level) : "20%" 
+                      width: isHovered ? getLevelWidth(skill.level) : "30%"
                     }}
                     transition={{ 
-                      duration: 0.8, 
-                      delay: index * 0.1,
+                      duration: 1, 
+                      delay: index * 0.15,
                       ease: "easeOut"
                     }}
-                  />
+                  >
+                    {/* Animated scanner line */}
+                    <motion.div
+                      className="absolute inset-y-0 right-0 w-1 bg-white/80 rounded-full"
+                      animate={{
+                        opacity: isHovered ? [0, 1, 0] : 0
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: isHovered ? Infinity : 0,
+                        delay: index * 0.2
+                      }}
+                    />
+                  </motion.div>
                 </div>
               </motion.div>
             ))}
           </motion.div>
 
-          {/* Status Indicator */}
+          {/* Status Footer */}
           <motion.div 
-            className="flex-shrink-0 mt-4 text-center"
-            animate={{ opacity: isHovered ? 1 : 0.5 }}
+            className="mt-6 text-center"
+            animate={{ opacity: isHovered ? 1 : 0.7 }}
           >
-            <div className="font-mono text-xs text-electric-blue/80">
-              {isHovered ? "[ ANALYZING CAPABILITIES ]" : "[ HOVER TO SCAN ]"}
+            <div className="font-mono text-xs text-electric-blue/80 mb-3">
+              {isHovered ? `[ ${skills.length} CAPABILITIES ANALYZED ]` : `[ ${skills.length} MODULES DETECTED ]`}
             </div>
-            <div className="flex justify-center mt-2 space-x-1">
-              {[0, 1, 2].map((i) => (
+            
+            {/* Pulse Indicators */}
+            <div className="flex justify-center space-x-2">
+              {[0, 1, 2, 3, 4].map((i) => (
                 <motion.div
                   key={i}
-                  className="w-1 h-1 bg-electric-blue rounded-full"
+                  className="w-1.5 h-1.5 bg-electric-blue rounded-full"
                   animate={{
-                    opacity: isHovered ? [0.3, 1, 0.3] : 0.3,
-                    scale: isHovered ? [1, 1.5, 1] : 1
+                    opacity: isHovered ? [0.3, 1, 0.3] : [0.5, 0.8, 0.5],
+                    scale: isHovered ? [1, 1.5, 1] : [1, 1.2, 1]
                   }}
                   transition={{
-                    duration: 1.5,
-                    repeat: isHovered ? Infinity : 0,
+                    duration: isHovered ? 1 : 2,
+                    repeat: Infinity,
                     delay: i * 0.2
                   }}
                 />
@@ -148,13 +196,19 @@ export default function SkillCard({ emoji, title, subtitle, skills }: SkillCardP
         </div>
 
         {/* Corner Tech Details */}
-        <div className="absolute top-2 right-2 font-mono text-xs text-electric-blue/40">
-          v2.1
-        </div>
-        <div className="absolute bottom-2 left-2 font-mono text-xs text-electric-blue/40">
-          {skills.length} MODS
-        </div>
+        <motion.div 
+          className="absolute top-3 right-3 font-mono text-xs text-electric-blue/60"
+          animate={{ opacity: isHovered ? 1 : 0.5 }}
+        >
+          SYS-{(Math.random() * 1000).toFixed(0)}
+        </motion.div>
+        <motion.div 
+          className="absolute bottom-3 left-3 font-mono text-xs text-electric-blue/60"
+          animate={{ opacity: isHovered ? 1 : 0.5 }}
+        >
+          {skills.length}/{skills.length} ONLINE
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 }
