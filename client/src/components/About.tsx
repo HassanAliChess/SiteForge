@@ -22,14 +22,17 @@ export default function About() {
         </motion.h2>
         
         <motion.div
-          className="glass-card p-8 mb-12 neon-border"
+          className="skill-card-enhanced rounded-lg p-8 mb-12 tech-scan"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={isVisible ? { opacity: 1, scale: 1 } : {}}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <p className="text-lg md:text-xl leading-relaxed text-gray-300">
+          <p className="text-lg md:text-xl leading-relaxed text-white font-medium">
             "I'm not your average dev. I engineer logic, decode financial markets, automate decisions with AI, and dominate digital environments — all before your coffee brews."
           </p>
+          <div className="mt-4 text-right">
+            <span className="font-mono text-sm text-electric-blue">— Digital Titan MHA</span>
+          </div>
         </motion.div>
       </div>
     </section>

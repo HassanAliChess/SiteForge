@@ -43,17 +43,17 @@ export default function SoftSkills() {
           {softSkillsData.map((skill, index) => (
             <motion.div
               key={index}
-              className="glass-card neon-border p-6 text-center hover-glow cursor-pointer"
+              className="skill-card-enhanced rounded-lg p-6 text-center hover-glow cursor-pointer"
               initial={{ opacity: 0, y: 50 }}
               animate={isVisible ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: index * 0.1 }}
               whileHover={{ scale: 1.05, rotateY: 5 }}
             >
-              <div className="text-3xl mb-4">{skill.emoji}</div>
-              <h3 className="font-orbitron font-bold text-lg text-electric-blue mb-3">
+              <div className="text-4xl mb-4">{skill.emoji}</div>
+              <h3 className="font-orbitron font-bold text-lg text-white mb-3 drop-shadow-lg">
                 {skill.title}
               </h3>
-              <p className="text-sm text-gray-400">{skill.description}</p>
+              <p className="text-sm text-electric-blue font-medium">{skill.description}</p>
             </motion.div>
           ))}
         </div>

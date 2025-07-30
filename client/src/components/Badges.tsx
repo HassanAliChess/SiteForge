@@ -43,15 +43,15 @@ export default function Badges() {
           {badgesData.map((badge, index) => (
             <motion.div
               key={index}
-              className="glass-card neon-border p-6 text-center hover-glow cursor-pointer"
+              className="skill-card-enhanced rounded-lg p-6 text-center hover-glow cursor-pointer"
               initial={{ opacity: 0, y: 50 }}
               animate={isVisible ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: index * 0.1 }}
               whileHover={{ scale: 1.05 }}
             >
-              <div className="text-3xl mb-3">{badge.emoji}</div>
-              <h3 className="font-semibold text-electric-blue mb-2">{badge.title}</h3>
-              <p className="text-sm text-gray-400">{badge.subtitle}</p>
+              <div className="text-4xl mb-4">{badge.emoji}</div>
+              <h3 className="font-semibold text-white mb-2 drop-shadow-lg">{badge.title}</h3>
+              <p className="text-sm text-electric-blue font-medium">{badge.subtitle}</p>
             </motion.div>
           ))}
         </div>
