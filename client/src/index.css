@@ -1,8 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
 
 :root {
   --background: hsl(240, 10%, 3.9%);
@@ -108,18 +108,20 @@
   }
   
   .glass-card {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    background: rgba(0, 20, 40, 0.15);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
   }
   
   .neon-border {
-    border: 2px solid transparent;
-    background: linear-gradient(45deg, hsl(195, 100%, 50%), hsl(267, 84%, 81%), hsl(180, 100%, 50%)) border-box;
+    border: 1px solid hsla(195, 100%, 50%, 0.6);
     box-shadow: 
-      0 0 20px hsla(195, 100%, 50%, 0.5),
-      inset 0 0 20px hsla(267, 84%, 81%, 0.1);
+      0 0 15px hsla(195, 100%, 50%, 0.3),
+      0 0 30px hsla(195, 100%, 50%, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
   }
   
   .skill-progress {
@@ -128,11 +130,89 @@
   }
   
   .hover-glow:hover {
-    transform: scale(1.05);
+    transform: scale(1.02) translateY(-2px);
+    border-color: hsla(195, 100%, 50%, 0.8);
     box-shadow: 
-      0 0 30px hsla(195, 100%, 50%, 0.8),
-      0 0 60px hsla(267, 84%, 81%, 0.4);
+      0 0 25px hsla(195, 100%, 50%, 0.5),
+      0 0 50px hsla(195, 100%, 50%, 0.2),
+      0 10px 30px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease;
+  }
+  
+  .skill-card-enhanced {
+    background: linear-gradient(135deg, 
+      rgba(0, 30, 60, 0.2) 0%, 
+      rgba(0, 20, 40, 0.15) 50%, 
+      rgba(0, 15, 30, 0.1) 100%);
+    border: 1px solid transparent;
+    background-clip: padding-box;
+    position: relative;
+  }
+  
+  .skill-card-enhanced::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    background: linear-gradient(135deg, 
+      hsla(195, 100%, 50%, 0.6), 
+      hsla(267, 84%, 81%, 0.4), 
+      hsla(180, 100%, 50%, 0.6));
+    border-radius: inherit;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    -webkit-mask-composite: xor;
+  }
+  
+  .skill-card-enhanced:hover::before {
+    background: linear-gradient(135deg, 
+      hsla(195, 100%, 50%, 0.8), 
+      hsla(267, 84%, 81%, 0.6), 
+      hsla(180, 100%, 50%, 0.8));
+  }
+  
+  .holographic-grid {
+    background: 
+      linear-gradient(90deg, transparent 79px, hsla(195, 100%, 50%, 0.1) 81px, hsla(195, 100%, 50%, 0.1) 82px, transparent 84px),
+      linear-gradient(hsla(195, 100%, 50%, 0.1) 0.5px, transparent 0.5px);
+    background-size: 80px 80px;
+    animation: grid-shift 8s linear infinite;
+  }
+  
+  .tech-scan {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .tech-scan::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+      transparent, 
+      hsla(195, 100%, 50%, 0.3) 50%, 
+      transparent);
+    animation: tech-scan 3s infinite;
+  }
+  
+  .pulse-ring {
+    position: relative;
+  }
+  
+  .pulse-ring::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border: 2px solid hsla(195, 100%, 50%, 0.6);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: pulse-ring 2s ease-out infinite;
   }
   
   .particle {
@@ -181,6 +261,29 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes grid-shift {
+  from { background-position: 0 0; }
+  to { background-position: 80px 80px; }
+}
+
+@keyframes tech-scan {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+@keyframes pulse-ring {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    width: 300px;
+    height: 300px;
+    opacity: 0;
   }
 }
 

@@ -59,32 +59,32 @@ export default function Contact() {
             href="https://github.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="glass-card neon-border p-4 hover-glow transition-all duration-300"
+            className="skill-card-enhanced rounded-lg p-4 hover-glow transition-all duration-300"
             whileHover={{ scale: 1.1, rotateZ: 5 }}
           >
-            <Github className="w-8 h-8 text-electric-blue" />
+            <Github className="w-8 h-8 text-white" />
           </motion.a>
           <motion.a
             href="https://linkedin.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="glass-card neon-border p-4 hover-glow transition-all duration-300"
+            className="skill-card-enhanced rounded-lg p-4 hover-glow transition-all duration-300"
             whileHover={{ scale: 1.1, rotateZ: -5 }}
           >
-            <Linkedin className="w-8 h-8 text-electric-blue" />
+            <Linkedin className="w-8 h-8 text-white" />
           </motion.a>
           <motion.a
             href="mailto:hassan@example.com"
-            className="glass-card neon-border p-4 hover-glow transition-all duration-300"
+            className="skill-card-enhanced rounded-lg p-4 hover-glow transition-all duration-300"
             whileHover={{ scale: 1.1, rotateZ: 5 }}
           >
-            <Mail className="w-8 h-8 text-electric-blue" />
+            <Mail className="w-8 h-8 text-white" />
           </motion.a>
         </motion.div>
         
         {/* Contact Form */}
         <motion.div
-          className="glass-card neon-border p-8 max-w-2xl mx-auto"
+          className="skill-card-enhanced rounded-lg p-8 max-w-2xl mx-auto"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={isVisible ? { opacity: 1, scale: 1 } : {}}
           transition={{ duration: 0.8, delay: 0.4 }}
@@ -128,7 +128,7 @@ export default function Contact() {
             <motion.button
               type="submit"
               disabled={isSubmitting}
-              className="w-full glass-card neon-border py-3 font-semibold hover-glow transition-all duration-300 disabled:opacity-50"
+              className="w-full skill-card-enhanced rounded-lg py-3 font-semibold hover-glow transition-all duration-300 disabled:opacity-50 text-white"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >

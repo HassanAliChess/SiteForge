@@ -39,27 +39,38 @@ export default function SkillCard({ emoji, title, subtitle, skills }: SkillCardP
         transition={{ duration: 0.6 }}
       >
         {/* Front Face */}
-        <div className="absolute inset-0 backface-hidden glass-card neon-border p-6 flex flex-col items-center justify-center hover-glow">
-          <div className="text-4xl mb-4">{emoji}</div>
-          <h3 className="font-orbitron font-bold text-xl text-electric-blue mb-2 text-center">
+        <div className="absolute inset-0 backface-hidden skill-card-enhanced rounded-lg p-6 flex flex-col items-center justify-center hover-glow">
+          <motion.div 
+            className="text-5xl mb-4"
+            animate={{ rotateY: [0, 10, -10, 0] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+          >
+            {emoji}
+          </motion.div>
+          <h3 className="font-orbitron font-bold text-xl text-white mb-2 text-center drop-shadow-lg">
             {title}
           </h3>
-          <p className="text-sm text-gray-400 text-center">{subtitle}</p>
+          <p className="text-sm text-electric-blue text-center font-medium">{subtitle}</p>
+          <div className="absolute bottom-2 right-2 text-xs text-electric-blue/60 font-mono">
+            HOVER TO VIEW
+          </div>
         </div>
 
         {/* Back Face */}
-        <div className="absolute inset-0 backface-hidden rotate-y-180 glass-card neon-border p-6 flex flex-col justify-center">
-          <div className="space-y-2 text-sm">
+        <div className="absolute inset-0 backface-hidden rotate-y-180 skill-card-enhanced rounded-lg p-6 flex flex-col justify-center">
+          <div className="space-y-3 text-sm">
             {skills.map((skill, index) => (
               <motion.div
                 key={index}
-                className="flex justify-between"
+                className="flex justify-between items-center bg-black/20 rounded p-2 border border-electric-blue/20"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: index * 0.1 }}
               >
-                <span>{skill.name}</span>
-                <span className={getLevelColor(skill.level)}>{skill.level}</span>
+                <span className="text-white font-medium">{skill.name}</span>
+                <span className={`${getLevelColor(skill.level)} font-bold text-xs px-2 py-1 rounded border border-current`}>
+                  {skill.level}
+                </span>
               </motion.div>
             ))}
           </div>
